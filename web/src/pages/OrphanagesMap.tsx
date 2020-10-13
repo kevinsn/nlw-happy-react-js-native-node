@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FiPlus } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { Map, TileLayer } from 'react-leaflet';
 
 import 'leaflet/dist/leaflet.css';
@@ -14,7 +14,7 @@ function OrphanagesMap() {
         <div id="page-map">
             <aside>
                 <header>
-                    <img src={mapMarkerImg} alt="Happy marker" />
+                    <img src={mapMarkerImg} alt="Marker Happy" />
 
                     <h2>Escolha um orfanato no mapa</h2>
                     <p>Muitas crianças estão esperando a sua visita :)</p>
