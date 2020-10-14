@@ -7,14 +7,15 @@ export class createOrphanages1602623703107 implements MigrationInterface {
         // CRIAR TABELAS, CRIAR CAMPOS E DELETAR CAMPOS
         await queryRunner.createTable(new Table({
             name: 'orphanages',
-            columns: [{
-                name: 'id',
-                type: 'integer',
-                unsigned: true,
-                isPrimary: true,
-                isGenerated: true,
-                generationStrategy: 'increment',
-            },
+            columns: [
+                {
+                    name: 'id',
+                    type: 'integer',
+                    unsigned: true,
+                    isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: 'increment',
+                },
                 {
                     name: 'name',
                     type: 'varchar'
