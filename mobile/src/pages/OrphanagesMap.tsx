@@ -6,7 +6,6 @@ import { Feather } from '@expo/vector-icons';
 import mapMarker from '../images/map-marker.png';
 import { useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
-import { useRoute } from '@react-navigation/native';
 import api from '../services/api';
 
 interface Orphanage {
@@ -17,10 +16,6 @@ interface Orphanage {
 }
 
 export default function OrphanagesMap() {
-  const route = useRoute();
-
-  console.log(route.params);
-
   const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
   const navigation = useNavigation();
 
