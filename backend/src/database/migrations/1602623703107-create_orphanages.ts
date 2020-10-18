@@ -1,5 +1,9 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
+// Comando para criar arquivo da tabela "orphanages": yarn typeorm migration: create -n create_orphanages
+// Rodar novamente yarn typeorm migration:run para criar essa tabela "orphanages"
+// Comando para reverter: yarn typeorm migration:revert
+
 export class createOrphanages1602623703107 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
@@ -18,6 +22,10 @@ export class createOrphanages1602623703107 implements MigrationInterface {
                 },
                 {
                     name: 'name',
+                    type: 'varchar'
+                }, 
+                {
+                    name: 'phone',
                     type: 'varchar'
                 }, 
                 {

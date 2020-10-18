@@ -9,6 +9,9 @@ export default class Orphanage {
 
     @Column()
     name: string;
+
+    @Column()
+    phone: string;
     
     @Column()
     latitude: number;

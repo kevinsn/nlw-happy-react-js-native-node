@@ -8,12 +8,12 @@ import '../styles/pages/orphanage.css';
 import Sidebar from "../components/Sidebar";
 import mapIcon from "../utils/mapIcon";
 import api from "../services/api";
-import OrphanagesMap from "./OrphanagesMap";
 
 interface Orphanage {
   latitude: number;
   longitude: number;
   name: string;
+  phone: string;
   about: string;
   instructions: string;
   opening_hours: string;
@@ -32,8 +32,6 @@ export default function Orphanage() {
   const params = useParams<OrphanageParams>();
   const [orphanage, setOrphanage] = useState<Orphanage>();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-
-  const { id } = params
 
   useEffect(() => {
       api.get(`orphanages/${params.id}`).then(response => {
@@ -124,10 +122,15 @@ export default function Orphanage() {
               )}
             </div>
 
-            {/* <button type="button" className="contact-button">
+            <button 
+              type="button"  
+              className="contact-button"
+              onClick={() => window.location.href=`https://api.whatsapp.com/send?phone=55${orphanage.phone}`}
+              // onClick={() => console.log(orphanage)}
+            >
               <FaWhatsapp size={20} color="#FFF" />
               Entrar em contato
-            </button> */}
+            </button>
           </div>
         </div>
       </main>
