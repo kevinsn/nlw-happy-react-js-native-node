@@ -19,6 +19,11 @@ interface Orphanage {
 function OrphanagesMap() {
     const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
 
+    // let brazilMaxBounds = [
+    //     [-73.9872354804, -33.7683777809],
+    //     [-34.7299934555, 5.24448639569]
+    // ];
+
     useEffect(() => {
         api.get('orphanages').then(response => {
             setOrphanages(response.data);
@@ -45,9 +50,15 @@ function OrphanagesMap() {
                 center={[-23.6815315,-46.8754907]}
                 zoom={15}
                 style={{ width: '100%', height: '100%' }}
-            >
-                <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                // maxBounds={[[-73.9872354804, -33.7683777809], [-34.7299934555, 5.24448639569]]}    
+                maxBounds={[[-33.7683777809, -73.9872354804],[5.24448639569, -34.7299934555]]}
+                minZoom={6}
+                maxZoom={15}
+                
+            >   
 
+                <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                
                 {orphanages.map(orphanage => {
                     return (
                     <Marker 
