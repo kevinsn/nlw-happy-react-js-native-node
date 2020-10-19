@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons';
@@ -18,12 +18,25 @@ interface Orphanage {
 export default function OrphanagesMap() {
   const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
   const navigation = useNavigation();
+  // const mapRef = useRef(null);
 
   useFocusEffect(() => {
     api.get('orphanages').then(response => {
       setOrphanages(response.data);
     });
   }) ;
+  
+  // useEffect(() => {
+  //   // if (mapRef) {
+  //   //   console.log(mapRef);
+  //   // }
+  //   if (mapRef !== null){
+  //     mapRef.current.setMapBoundaries(
+  //       [[-33.7683777809, -73.9872354804],[5.24448639569, -34.7299934555]]
+  //     )
+  //     console.log(mapRef);
+  //   }    
+  // });
 
   function handleNavigateToOrphanageDetails(id: number){
     navigation.navigate('OrphanagesDetails', {id});
@@ -37,13 +50,22 @@ export default function OrphanagesMap() {
     <View style={styles.container}>
       <MapView
         provider={PROVIDER_GOOGLE}
-        style={styles.map}
+        style={styles.map}  
+        // region={{
+        //   latitude: -27.2029052,
+        //   longitude: -49.6401092,
+        //   latitudeDelta: 0.008,
+        //   longitudeDelta: 0.008,
+        // }}                   
+        minZoomLevel={5}
+        maxZoomLevel={15}
         initialRegion={{
           latitude: -27.2029052,
           longitude: -49.6401092,
           latitudeDelta: 0.008,
           longitudeDelta: 0.008,
-        }}
+        }}       
+        // ref={mapRef}             
       >
         {orphanages.map(orphanage => {
           return (
